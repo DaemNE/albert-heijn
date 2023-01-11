@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { View, TextInput, StyleSheet, Text, Pressable } from "react-native";
 
 export const InputComponent = ({ itemList, setItemList }) => {
   const [inputItemText, setInputItemText] = useState("");
   const [inputItemAmount, setInputItemAmount] = useState("");
+
+  const data = require("../assets/data/data.json");
 
   const addItem = () => {
     if (inputItemAmount && inputItemText) {

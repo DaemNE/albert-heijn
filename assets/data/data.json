@@ -1,0 +1,39 @@
+{
+    "availableItems": [{
+            "label": "Orange Juice",
+            "value": "Orange Juice",
+            "location": "1",
+            "key": 1
+        },
+        {
+            "label": "Orange Juice",
+            "value": "Orange Juice",
+            "location": "1",
+            "key": 2
+        },
+        {
+            "label": "Orange Juice",
+            "value": "Orange Juice",
+            "location": "1",
+            "key": 3
+        },
+        {
+            "label": "Orange Juice",
+            "value": "Orange Juice",
+            "location": "1",
+            "key": 4
+        },
+        {
+            "label": "Orange Juice",
+            "value": "Orange Juice",
+            "location": "1",
+            "key": 5
+        },
+        {
+            "label": "Orange Juice",
+            "value": "Orange Juice",
+            "location": "1",
+            "key": 6
+        }
+    ]
+}
