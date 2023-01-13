@@ -40,6 +40,7 @@ export const ListComponent = ({ itemList, setItemList }) => {
       <StoreBlueprint
         isStoreBlueprintVisible={isStoreBlueprintVisible}
         setIsStoreBlueprintVisible={setIsStoreBlueprintVisible}
+        itemList={itemList}
       />
     </>
   );

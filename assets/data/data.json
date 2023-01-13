@@ -47,7 +47,7 @@
         },
         {
             "label": "Vuilniszak",
-            "location": "1",
+            "location": "20",
             "key": 10
         },
         {
@@ -84,6 +84,11 @@
             "label": "Gin",
             "location": "9",
             "key": 17
+        },
+        {
+            "label": "Paprika",
+            "location": "18",
+            "key": 18
         }
     ]
 }

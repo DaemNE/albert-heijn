@@ -52,7 +52,6 @@ export const InputComponent = ({ itemList, setItemList }) => {
               data={data}
               onSelect={(item, index) => {
                 setSelectedItem(item);
-                console.log(selectedItem);
               }}
               defaultButtonText={"Select article"}
               buttonTextAfterSelection={(item, index) => {
