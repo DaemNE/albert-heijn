@@ -29,7 +29,7 @@ export const InputComponent = ({ itemList, setItemList }) => {
           amount: inputItemAmount,
           id: Math.random().toString(),
           location: selectedItem.location,
-          checked: false,
+          found: false,
         },
       ]);
       setSelectedItem({});

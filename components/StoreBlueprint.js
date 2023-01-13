@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal, Pressable, StyleSheet, Text, View } from "react-native";
+import { SectionList } from "./SectionList";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 
 export const StoreBlueprint = ({
   isStoreBlueprintVisible,
   setIsStoreBlueprintVisible,
   itemList,
+  setItemList,
 }) => {
   const [section1, setSection1] = useState(0);
   const [section2, setSection2] = useState(0);
@@ -26,6 +33,8 @@ export const StoreBlueprint = ({
   const [section18, setSection18] = useState(0);
   const [section19, setSection19] = useState(0);
   const [section20, setSection20] = useState(0);
+  const [currentSection, setCurrentSection] = useState(0);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const calcBackgroundColor = (amountOfItems) => {
     if (amountOfItems === 0) {
@@ -41,7 +50,7 @@ export const StoreBlueprint = ({
 
   const calcAmountOfItemsInSection = (section) => {
     const duplicateList = itemList.filter(
-      (item) => item.location === section.toString()
+      (item) => item.location === section.toString() && !item.checked
     );
     return duplicateList.length;
   };
@@ -69,251 +78,541 @@ export const StoreBlueprint = ({
     setSection20(calcAmountOfItemsInSection(20));
   }, [isStoreBlueprintVisible]);
 
+  const handleSectionPress = (section) => {
+    setIsModalVisible(true);
+    setCurrentSection(section);
+    setIsStoreBlueprintVisible(false);
+  };
+
   const handlePressCloseContainer = () => {
     setIsStoreBlueprintVisible(false);
   };
   return (
-    <Modal
-      transparent={true}
-      visible={isStoreBlueprintVisible}
-      style={styles.modalContainer}
-      animationType="slide"
-      onRequestClose={() => setIsStoreBlueprintVisible(false)}
-    >
-      <Pressable
-        style={styles.closeContainer}
-        onPress={handlePressCloseContainer}
-      />
-      <View style={styles.modalContainer}>
-        <Text style={styles.titleText}>Store Blueprint</Text>
-        <View style={styles.layoutContainer}>
-          <View
-            style={[
-              styles.section1,
-              styles.sectionDesign,
-              {
-                backgroundColor: calcBackgroundColor(section1),
-              },
-            ]}
-          >
-            <Text>Zuivel 1</Text>
-          </View>
-          <View
-            style={[
-              styles.section2,
-              styles.sectionDesign,
-              {
-                backgroundColor: calcBackgroundColor(section2),
-              },
-            ]}
-          >
-            <Text>Apero 2</Text>
-          </View>
-          <View
-            style={[
-              styles.section3,
-              styles.sectionDesign,
-              {
-                backgroundColor: calcBackgroundColor(section3),
-              },
-            ]}
-          >
-            <Text>Brood 3</Text>
-          </View>
-          <View
-            style={[
-              styles.section4,
-              styles.sectionDesign,
-              {
-                backgroundColor: calcBackgroundColor(section4),
-              },
-            ]}
-          >
-            <Text style={styles.verticalText}>Bier & Fris 4</Text>
-          </View>
-          <View
-            style={[
-              styles.section5,
-              styles.sectionDesign,
-              {
-                backgroundColor: calcBackgroundColor(section5),
-              },
-            ]}
-          >
-            <Text style={styles.verticalText}>Diepvries 5</Text>
-          </View>
-          <View
-            style={[
-              styles.section6,
-              styles.sectionDesign,
-              {
-                backgroundColor: calcBackgroundColor(section6),
-              },
-            ]}
-          >
-            <Text style={styles.verticalText}>Alcohol 6</Text>
-          </View>
-          <View
-            style={[
-              styles.section7,
-              styles.sectionDesign,
-              {
-                backgroundColor: calcBackgroundColor(section7),
-              },
-            ]}
-          >
-            <Text style={styles.verticalText}>Chips & Snacks 7</Text>
-          </View>
-          <View
-            style={[
-              styles.section8,
-              styles.sectionDesign,
-              {
-                backgroundColor: calcBackgroundColor(section8),
-              },
-            ]}
-          >
-            <Text style={styles.verticalText}>Eieren 8</Text>
-          </View>
-          <View
-            style={[
-              styles.section9,
-              styles.sectionDesign,
-              {
-                backgroundColor: calcBackgroundColor(section9),
-              },
-            ]}
-          >
-            <Text style={styles.verticalText}>Exotisch 9</Text>
-          </View>
-          <View
-            style={[
-              styles.section10,
-              styles.sectionDesign,
-              {
-                backgroundColor: calcBackgroundColor(section10),
-              },
-            ]}
-          >
-            <Text style={styles.verticalText}>Proteïnes 10</Text>
-          </View>
-          <View
-            style={[
-              styles.section11,
-              styles.sectionDesign,
-              {
-                backgroundColor: calcBackgroundColor(section11),
-              },
-            ]}
-          >
-            <Text style={styles.verticalText}>Kaas 11</Text>
-          </View>
-          <View
-            style={[
-              styles.section12,
-              styles.sectionDesign,
-              {
-                backgroundColor: calcBackgroundColor(section12),
-              },
-            ]}
-          >
-            <Text>Kuisproduct 12</Text>
-          </View>
-          <View
-            style={[
-              styles.section13,
-              styles.sectionDesign,
-              {
-                backgroundColor: calcBackgroundColor(section13),
-              },
-            ]}
-          >
-            <Text>Hygiëne 13</Text>
-          </View>
-          <View
-            style={[
-              styles.section14,
-              styles.sectionDesign,
-              {
-                backgroundColor: calcBackgroundColor(section14),
-              },
-            ]}
-          >
-            <Text>Zalm 14</Text>
-          </View>
-          <View
-            style={[
-              styles.section15,
-              styles.sectionDesign,
-              {
-                backgroundColor: calcBackgroundColor(section15),
-              },
-            ]}
-          >
-            <Text>Maaltijden 15</Text>
-          </View>
-          <View
-            style={[
-              styles.section16,
-              styles.sectionDesign,
-              {
-                backgroundColor: calcBackgroundColor(section16),
-              },
-            ]}
-          >
-            <Text>Kassa 16</Text>
-          </View>
-          <View
-            style={[
-              styles.section17,
-              styles.sectionDesign,
-              {
-                backgroundColor: calcBackgroundColor(section17),
-              },
-            ]}
-          >
-            <Text>Lil Italy 17</Text>
-          </View>
-          <View
-            style={[
-              styles.section18,
-              styles.sectionDesign,
-              {
-                backgroundColor: calcBackgroundColor(section18),
-              },
-            ]}
-          >
-            <Text>Groenten & Fruit 18</Text>
-          </View>
-          <View
-            style={[
-              styles.section19,
-              styles.sectionDesign,
-              {
-                backgroundColor: calcBackgroundColor(section19),
-              },
-            ]}
-          >
-            <Text>Sapjes 19</Text>
-          </View>
-          <View
-            style={[
-              styles.section20,
-              styles.sectionDesign,
-              {
-                backgroundColor: calcBackgroundColor(section20),
-              },
-            ]}
-          >
-            <Text>Divers 20</Text>
-          </View>
-        </View>
-        <Button
-          title="Back"
-          onPress={() => setIsStoreBlueprintVisible(false)}
+    <>
+      <Modal
+        transparent={true}
+        visible={isStoreBlueprintVisible}
+        style={styles.modalContainer}
+        animationType="slide"
+        onRequestClose={() => setIsStoreBlueprintVisible(false)}
+      >
+        <Pressable
+          style={styles.closeContainer}
+          onPress={handlePressCloseContainer}
         />
-      </View>
-    </Modal>
+        <View style={styles.modalContainer} key={Math.random()}>
+          <Text style={styles.titleText}>Store Blueprint</Text>
+          <Text>
+            Articles left:
+            {itemList.filter((item) => item.found !== true).length}
+          </Text>
+          <View style={styles.layoutContainer}>
+            <Pressable
+              style={[
+                styles.section1,
+                styles.sectionDesign,
+                {
+                  backgroundColor: calcBackgroundColor(section1),
+                },
+              ]}
+              onPress={() => {
+                handleSectionPress(1);
+              }}
+            >
+              <View>
+                <Text>
+                  <MaterialCommunityIcons
+                    name="food-variant"
+                    size={24}
+                    color="black"
+                  />
+                  {
+                    itemList.filter((item) => {
+                      return item.location === "1" && !item.found;
+                    }).length
+                  }
+                </Text>
+              </View>
+            </Pressable>
+            <Pressable
+              style={[
+                styles.section2,
+                styles.sectionDesign,
+                {
+                  backgroundColor: calcBackgroundColor(section2),
+                },
+              ]}
+              onPress={() => {
+                handleSectionPress(2);
+              }}
+            >
+              <View>
+                <Text>
+                  <MaterialCommunityIcons
+                    name="sausage"
+                    size={24}
+                    color="black"
+                  />
+                  {
+                    itemList.filter((item) => {
+                      return item.location === "2" && !item.found;
+                    }).length
+                  }
+                </Text>
+              </View>
+            </Pressable>
+            <Pressable
+              style={[
+                styles.section3,
+                styles.sectionDesign,
+                {
+                  backgroundColor: calcBackgroundColor(section3),
+                },
+              ]}
+              onPress={() => {
+                handleSectionPress(3);
+              }}
+            >
+              <View>
+                <Text>
+                  <FontAwesome5 name="bread-slice" size={24} color="black" />
+                  {
+                    itemList.filter((item) => {
+                      return item.location === "3" && !item.found;
+                    }).length
+                  }
+                </Text>
+              </View>
+            </Pressable>
+            <Pressable
+              style={[
+                styles.section4,
+                styles.sectionDesign,
+                {
+                  backgroundColor: calcBackgroundColor(section4),
+                },
+              ]}
+              onPress={() => {
+                handleSectionPress(4);
+              }}
+            >
+              <View>
+                <Text style={styles.verticalText}>
+                  <Ionicons name="beer" size={24} color="black" /> &{" "}
+                  <MaterialCommunityIcons
+                    name="bottle-soda-classic"
+                    size={24}
+                    color="black"
+                  />
+                  {
+                    itemList.filter((item) => {
+                      return item.location === "4" && !item.found;
+                    }).length
+                  }
+                </Text>
+              </View>
+            </Pressable>
+            <Pressable
+              style={[
+                styles.section5,
+                styles.sectionDesign,
+                {
+                  backgroundColor: calcBackgroundColor(section5),
+                },
+              ]}
+              onPress={() => {
+                handleSectionPress(5);
+              }}
+            >
+              <View>
+                <Text style={styles.verticalText}>
+                  <FontAwesome name="snowflake-o" size={24} color="black" />
+                  {
+                    itemList.filter((item) => {
+                      return item.location === "5" && !item.found;
+                    }).length
+                  }
+                </Text>
+              </View>
+            </Pressable>
+            <Pressable
+              style={[
+                styles.section6,
+                styles.sectionDesign,
+                {
+                  backgroundColor: calcBackgroundColor(section6),
+                },
+              ]}
+              onPress={() => {
+                handleSectionPress(6);
+              }}
+            >
+              <View>
+                <Text style={styles.verticalText}>
+                  <FontAwesome5 name="wine-glass-alt" size={24} color="black" />
+                  {
+                    itemList.filter((item) => {
+                      return item.location === "6" && !item.found;
+                    }).length
+                  }
+                </Text>
+              </View>
+            </Pressable>
+            <Pressable
+              style={[
+                styles.section7,
+                styles.sectionDesign,
+                {
+                  backgroundColor: calcBackgroundColor(section7),
+                },
+              ]}
+              onPress={() => {
+                handleSectionPress(7);
+              }}
+            >
+              <View>
+                <Text style={styles.verticalText}>
+                  <FontAwesome5 name="cookie-bite" size={24} color="black" />
+                  {
+                    itemList.filter((item) => {
+                      return item.location === "7" && !item.found;
+                    }).length
+                  }
+                </Text>
+              </View>
+            </Pressable>
+            <Pressable
+              style={[
+                styles.section8,
+                styles.sectionDesign,
+                {
+                  backgroundColor: calcBackgroundColor(section8),
+                },
+              ]}
+              onPress={() => {
+                handleSectionPress(8);
+              }}
+            >
+              <View>
+                <Text style={styles.verticalText}>
+                  <FontAwesome5 name="egg" size={24} color="black" />
+                  {
+                    itemList.filter((item) => {
+                      return item.location === "8" && !item.found;
+                    }).length
+                  }
+                </Text>
+              </View>
+            </Pressable>
+            <Pressable
+              style={[
+                styles.section9,
+                styles.sectionDesign,
+                {
+                  backgroundColor: calcBackgroundColor(section9),
+                },
+              ]}
+              onPress={() => {
+                handleSectionPress(9);
+              }}
+            >
+              <View>
+                <Text style={styles.verticalText}>
+                  <MaterialCommunityIcons
+                    name="palm-tree"
+                    size={24}
+                    color="black"
+                  />
+                  {
+                    itemList.filter((item) => {
+                      return item.location === "9" && !item.found;
+                    }).length
+                  }
+                </Text>
+              </View>
+            </Pressable>
+            <Pressable
+              style={[
+                styles.section10,
+                styles.sectionDesign,
+                {
+                  backgroundColor: calcBackgroundColor(section10),
+                },
+              ]}
+              onPress={() => {
+                handleSectionPress(10);
+              }}
+            >
+              <View>
+                <Text style={styles.verticalText}>
+                  <MaterialCommunityIcons
+                    name="food-drumstick"
+                    size={24}
+                    color="black"
+                  />
+                  {
+                    itemList.filter((item) => {
+                      return item.location === "10" && !item.found;
+                    }).length
+                  }
+                </Text>
+              </View>
+            </Pressable>
+            <Pressable
+              style={[
+                styles.section11,
+                styles.sectionDesign,
+                {
+                  backgroundColor: calcBackgroundColor(section11),
+                },
+              ]}
+              onPress={() => {
+                handleSectionPress(11);
+              }}
+            >
+              <View>
+                <Text style={styles.verticalText}>
+                  <FontAwesome5 name="cheese" size={24} color="black" />
+                  {
+                    itemList.filter((item) => {
+                      return item.location === "11" && !item.found;
+                    }).length
+                  }
+                </Text>
+              </View>
+            </Pressable>
+            <Pressable
+              style={[
+                styles.section12,
+                styles.sectionDesign,
+                {
+                  backgroundColor: calcBackgroundColor(section12),
+                },
+              ]}
+              onPress={() => {
+                handleSectionPress(12);
+              }}
+            >
+              <View>
+                <Text>
+                  <FontAwesome5 name="broom" size={24} color="black" />
+                  {
+                    itemList.filter((item) => {
+                      return item.location === "12" && !item.found;
+                    }).length
+                  }
+                </Text>
+              </View>
+            </Pressable>
+            <Pressable
+              style={[
+                styles.section13,
+                styles.sectionDesign,
+                {
+                  backgroundColor: calcBackgroundColor(section13),
+                },
+              ]}
+              onPress={() => {
+                handleSectionPress(13);
+              }}
+            >
+              <View>
+                <Text>
+                  <FontAwesome5 name="soap" size={24} color="black" />
+                  {
+                    itemList.filter((item) => {
+                      return item.location === "13" && !item.found;
+                    }).length
+                  }
+                </Text>
+              </View>
+            </Pressable>
+            <Pressable
+              style={[
+                styles.section14,
+                styles.sectionDesign,
+                {
+                  backgroundColor: calcBackgroundColor(section14),
+                },
+              ]}
+              onPress={() => {
+                handleSectionPress(14);
+              }}
+            >
+              <View>
+                <Text>
+                  <FontAwesome5 name="fish" size={24} color="black" />
+                  {
+                    itemList.filter((item) => {
+                      return item.location === "14" && !item.found;
+                    }).length
+                  }
+                </Text>
+              </View>
+            </Pressable>
+            <Pressable
+              style={[
+                styles.section15,
+                styles.sectionDesign,
+                {
+                  backgroundColor: calcBackgroundColor(section15),
+                },
+              ]}
+              onPress={() => {
+                handleSectionPress(15);
+              }}
+            >
+              <View>
+                <Text>
+                  <MaterialIcons name="fastfood" size={24} color="black" />
+                  {
+                    itemList.filter((item) => {
+                      return item.location === "15" && !item.found;
+                    }).length
+                  }
+                </Text>
+              </View>
+            </Pressable>
+            <Pressable
+              style={[
+                styles.section16,
+                styles.sectionDesign,
+                {
+                  backgroundColor: calcBackgroundColor(section16),
+                },
+              ]}
+              onPress={() => {
+                handleSectionPress(16);
+              }}
+            >
+              <View>
+                <Text>
+                  <FontAwesome name="money" size={24} color="black" />
+                  {
+                    itemList.filter((item) => {
+                      return item.location === "16" && !item.found;
+                    }).length
+                  }
+                </Text>
+              </View>
+            </Pressable>
+            <Pressable
+              style={[
+                styles.section17,
+                styles.sectionDesign,
+                {
+                  backgroundColor: calcBackgroundColor(section17),
+                },
+              ]}
+              onPress={() => {
+                handleSectionPress(17);
+              }}
+            >
+              <View>
+                <Text>
+                  <MaterialCommunityIcons
+                    name="pasta"
+                    size={24}
+                    color="black"
+                  />
+                  {
+                    itemList.filter((item) => {
+                      return item.location === "17" && !item.found;
+                    }).length
+                  }
+                </Text>
+              </View>
+            </Pressable>
+            <Pressable
+              style={[
+                styles.section18,
+                styles.sectionDesign,
+                {
+                  backgroundColor: calcBackgroundColor(section18),
+                },
+              ]}
+              onPress={() => {
+                handleSectionPress(18);
+              }}
+            >
+              <View>
+                <Text>
+                  <MaterialCommunityIcons
+                    name="fruit-cherries"
+                    size={24}
+                    color="black"
+                  />
+                  {
+                    itemList.filter((item) => {
+                      return item.location === "18" && !item.found;
+                    }).length
+                  }
+                </Text>
+              </View>
+            </Pressable>
+            <Pressable
+              style={[
+                styles.section19,
+                styles.sectionDesign,
+                {
+                  backgroundColor: calcBackgroundColor(section19),
+                },
+              ]}
+              onPress={() => {
+                handleSectionPress(19);
+              }}
+            >
+              <View>
+                <Text>
+                  <MaterialIcons name="local-drink" size={24} color="black" />
+                  {
+                    itemList.filter((item) => {
+                      return item.location === "19" && !item.found;
+                    }).length
+                  }
+                </Text>
+              </View>
+            </Pressable>
+            <Pressable
+              style={[
+                styles.section20,
+                styles.sectionDesign,
+                {
+                  backgroundColor: calcBackgroundColor(section20),
+                },
+              ]}
+              onPress={() => {
+                handleSectionPress(20);
+              }}
+            >
+              <View>
+                <Text>
+                  <FontAwesome5 name="cocktail" size={24} color="black" />
+                  {
+                    itemList.filter((item) => {
+                      return item.location === "20" && !item.found;
+                    }).length
+                  }
+                </Text>
+              </View>
+            </Pressable>
+          </View>
+          <Button
+            title="Back"
+            onPress={() => setIsStoreBlueprintVisible(false)}
+          />
+        </View>
+      </Modal>
+      <SectionList
+        itemList={itemList}
+        setItemList={setItemList}
+        isModalVisible={isModalVisible}
+        setIsModalVisible={setIsModalVisible}
+        currentSection={currentSection}
+        setCurrentSection={setCurrentSection}
+        setIsStoreBlueprintVisible={setIsStoreBlueprintVisible}
+      />
+    </>
   );
 };
 
@@ -459,15 +758,10 @@ const styles = StyleSheet.create({
     height: "10%",
     width: "20%",
   },
-  verticalText: {
-    transform: [{ rotate: "-90deg" }],
-    width: 100,
-    textAlign: "center",
-  },
   sectionDesign: {
     position: "relative",
     borderWidth: 1,
-    borderColor: "black",
+    borderColor: "grey",
     justifyContent: "center",
     alignItems: "center",
   },

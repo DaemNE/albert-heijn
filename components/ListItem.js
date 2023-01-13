@@ -11,7 +11,7 @@ export const ListItem = ({
   setItemList,
   found,
 }) => {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(found);
   const removeItem = (id) => {
     setItemList(itemList.filter((item) => item.id !== id));
   };
@@ -25,7 +25,7 @@ export const ListItem = ({
           setChecked(newValue);
           found = newValue;
           const indexOfItem = itemList.findIndex((item) => item.id === id);
-          itemList[indexOfItem].checked = newValue;
+          itemList[indexOfItem].found = newValue;
           setItemList(itemList);
         }}
         style={styles.checkbox}

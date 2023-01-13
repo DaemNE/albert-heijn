@@ -6,29 +6,7 @@ import { useState } from "react";
 import { ListComponent } from "./components/ListComponent";
 
 export default function App() {
-  const [itemList, setItemList] = useState([
-    {
-      amount: "1",
-      checked: false,
-      id: "0.7138716713980574",
-      location: "1",
-      text: "Ui",
-    },
-    {
-      amount: "2",
-      checked: false,
-      id: "0.7138716713980533",
-      location: "5",
-      text: "Eieren",
-    },
-    {
-      amount: "2",
-      checked: false,
-      id: "0.7138716713980534",
-      location: "20",
-      text: "Vuilniszakken",
-    },
-  ]);
+  const [itemList, setItemList] = useState([]);
 
   const [loaded] = useFonts({
     Appie: require("./assets/fonts/hamburg-ah-regular.ttf"),

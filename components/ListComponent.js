@@ -26,7 +26,7 @@ export const ListComponent = ({ itemList, setItemList }) => {
                 text={itemData.item.text}
                 amount={itemData.item.amount}
                 id={itemData.item.id}
-                checked={itemData.item.checked}
+                found={itemData.item.found}
                 itemList={itemList}
                 setItemList={setItemList}
               />
@@ -41,6 +41,7 @@ export const ListComponent = ({ itemList, setItemList }) => {
         isStoreBlueprintVisible={isStoreBlueprintVisible}
         setIsStoreBlueprintVisible={setIsStoreBlueprintVisible}
         itemList={itemList}
+        setItemList={setItemList}
       />
     </>
   );

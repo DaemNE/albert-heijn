@@ -1,94 +1,143 @@
 {
     "availableItems": [{
-            "label": "Ui",
-            "location": "1",
+            "label": "Bread",
+            "location": "3",
             "key": 1
         },
         {
-            "label": "Sinaapappelsap",
-            "location": "1",
+            "label": "Orange Juice",
+            "location": "19",
             "key": 2
         },
         {
-            "label": "Patat",
-            "location": "5",
+            "label": "Potato",
+            "location": "18",
             "key": 3
         },
         {
-            "label": "Geraspte kaas",
-            "location": "5",
+            "label": "Cheese",
+            "location": "11",
             "key": 4
         },
         {
-            "label": "Rode Wijn",
-            "location": "10",
+            "label": "Red Wine",
+            "location": "6",
             "key": 5
         },
         {
-            "label": "Tomaten",
-            "location": "1",
+            "label": "Tomatos",
+            "location": "18",
             "key": 6
         },
         {
             "label": "Ketchup",
-            "location": "1",
+            "location": "8",
             "key": 7
         },
         {
-            "label": "Chips",
-            "value": "Orange Juice",
-            "location": "1",
+            "label": "Crisps",
+            "location": "7",
             "key": 8
         },
         {
             "label": "Pizza",
-            "location": "1",
+            "location": "5",
             "key": 9
         },
         {
-            "label": "Vuilniszak",
+            "label": "Garbage bag",
             "location": "20",
             "key": 10
         },
         {
             "label": "Tampon",
-            "location": "1",
+            "location": "13",
             "key": 11
         },
         {
-            "label": "Wasverzachter",
-            "location": "1",
+            "label": "Broom",
+            "location": "12",
             "key": 12
         },
         {
-            "label": "Rijst",
-            "location": "1",
+            "label": "Rice",
+            "location": "8",
             "key": 13
         },
         {
             "label": "Eieren",
-            "location": "1",
+            "location": "8",
             "key": 14
         },
         {
             "label": "Fanta",
-            "location": "1",
+            "location": "4",
             "key": 15
         },
         {
-            "label": "Witte Wijn",
-            "location": "1",
+            "label": "White wine",
+            "location": "6",
             "key": 16
         },
         {
             "label": "Gin",
-            "location": "9",
+            "location": "20",
             "key": 17
         },
         {
             "label": "Paprika",
             "location": "18",
             "key": 18
+        },
+        {
+            "label": "Chicken Breast",
+            "location": "10",
+            "key": 19
+        },
+        {
+            "label": "Sushi Nori",
+            "location": "9",
+            "key": 20
+        },
+        {
+            "label": "Salmon",
+            "location": "14",
+            "key": 21
+        },
+        {
+            "label": "Lasagna",
+            "location": "15",
+            "key": 22
+        },
+        {
+            "label": "Ice cream",
+            "location": "5",
+            "key": 23
+        },
+        {
+            "label": "Aubergine",
+            "location": "18",
+            "key": 24
+        },
+        {
+            "label": "Pasta",
+            "location": "17",
+            "key": 25
+        },
+        {
+            "label": "Pesto",
+            "location": "17",
+            "key": 26
+        },
+        {
+            "label": "Olives",
+            "location": "2",
+            "key": 27
+        },
+        {
+            "label": "Yoghurt",
+            "location": "1",
+            "key": 28
         }
     ]
 }
