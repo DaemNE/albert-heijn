@@ -10,6 +10,7 @@ export const ListItem = ({
   itemList,
   setItemList,
   found,
+  overview,
 }) => {
   const [checked, setChecked] = useState(found);
   const removeItem = (id) => {
@@ -18,18 +19,20 @@ export const ListItem = ({
 
   return (
     <View style={styles.listItem} key={id}>
-      <Checkbox
-        disabled={false}
-        value={checked}
-        onValueChange={(newValue) => {
-          setChecked(newValue);
-          found = newValue;
-          const indexOfItem = itemList.findIndex((item) => item.id === id);
-          itemList[indexOfItem].found = newValue;
-          setItemList(itemList);
-        }}
-        style={styles.checkbox}
-      />
+      {overview ? (
+        <Checkbox
+          disabled={false}
+          value={checked}
+          onValueChange={(newValue) => {
+            setChecked(newValue);
+            found = newValue;
+            const indexOfItem = itemList.findIndex((item) => item.id === id);
+            itemList[indexOfItem].found = newValue;
+            setItemList(itemList);
+          }}
+          style={styles.checkbox}
+        />
+      ) : null}
       <Text style={styles.itemText}>{text}</Text>
       <Text style={styles.itemAmount}>{amount}</Text>
       <View style={styles.itemRemoveButton}>

@@ -29,6 +29,7 @@ export const ListComponent = ({ itemList, setItemList }) => {
                 found={itemData.item.found}
                 itemList={itemList}
                 setItemList={setItemList}
+                overview="value"
               />
             );
           }}
