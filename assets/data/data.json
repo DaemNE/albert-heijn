@@ -1,39 +1,89 @@
 {
     "availableItems": [{
-            "label": "Orange Juice",
-            "value": "Orange Juice",
+            "label": "Ui",
             "location": "1",
             "key": 1
         },
         {
-            "label": "Orange Juice",
-            "value": "Orange Juice",
+            "label": "Sinaapappelsap",
             "location": "1",
             "key": 2
         },
         {
-            "label": "Orange Juice",
-            "value": "Orange Juice",
-            "location": "1",
+            "label": "Patat",
+            "location": "5",
             "key": 3
         },
         {
-            "label": "Orange Juice",
-            "value": "Orange Juice",
-            "location": "1",
+            "label": "Geraspte kaas",
+            "location": "5",
             "key": 4
         },
         {
-            "label": "Orange Juice",
-            "value": "Orange Juice",
-            "location": "1",
+            "label": "Rode Wijn",
+            "location": "10",
             "key": 5
         },
         {
-            "label": "Orange Juice",
-            "value": "Orange Juice",
+            "label": "Tomaten",
             "location": "1",
             "key": 6
+        },
+        {
+            "label": "Ketchup",
+            "location": "1",
+            "key": 7
+        },
+        {
+            "label": "Chips",
+            "value": "Orange Juice",
+            "location": "1",
+            "key": 8
+        },
+        {
+            "label": "Pizza",
+            "location": "1",
+            "key": 9
+        },
+        {
+            "label": "Vuilniszak",
+            "location": "1",
+            "key": 10
+        },
+        {
+            "label": "Tampon",
+            "location": "1",
+            "key": 11
+        },
+        {
+            "label": "Wasverzachter",
+            "location": "1",
+            "key": 12
+        },
+        {
+            "label": "Rijst",
+            "location": "1",
+            "key": 13
+        },
+        {
+            "label": "Eieren",
+            "location": "1",
+            "key": 14
+        },
+        {
+            "label": "Fanta",
+            "location": "1",
+            "key": 15
+        },
+        {
+            "label": "Witte Wijn",
+            "location": "1",
+            "key": 16
+        },
+        {
+            "label": "Gin",
+            "location": "9",
+            "key": 17
         }
     ]
 }

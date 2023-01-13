@@ -1,26 +1,42 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet, Pressable } from "react-native";
 import Checkbox from "expo-checkbox";
+import { AntDesign } from "@expo/vector-icons";
 
-export const ListItem = ({ text, amount, id, itemList, setItemList }) => {
+export const ListItem = ({
+  text,
+  amount,
+  id,
+  itemList,
+  setItemList,
+  found,
+}) => {
   const [checked, setChecked] = useState(false);
   const removeItem = (id) => {
     setItemList(itemList.filter((item) => item.id !== id));
   };
 
   return (
-    <View style={styles.listItem}>
+    <View style={styles.listItem} key={id}>
       <Checkbox
         disabled={false}
         value={checked}
-        onValueChange={(newValue) => setChecked(newValue)}
+        onValueChange={(newValue) => {
+          setChecked(newValue);
+          found = newValue;
+          const indexOfItem = itemList.findIndex((item) => item.id === id);
+          itemList[indexOfItem].checked = newValue;
+          setItemList(itemList);
+        }}
         style={styles.checkbox}
       />
       <Text style={styles.itemText}>{text}</Text>
       <Text style={styles.itemAmount}>{amount}</Text>
       <View style={styles.itemRemoveButton}>
         <Pressable onPress={() => removeItem(id)}>
-          <Text style={styles.removeButton}>x</Text>
+          <View style={styles.itemRemoveButton}>
+            <AntDesign selectionColor={"red"} name="minuscircleo" size={24} />
+          </View>
         </Pressable>
       </View>
     </View>
@@ -30,10 +46,10 @@ export const ListItem = ({ text, amount, id, itemList, setItemList }) => {
 const styles = StyleSheet.create({
   listItem: {
     flexDirection: "row",
-    backgroundColor: "#40beeb",
     width: "100%",
     marginBottom: 4,
     justifyContent: "space-around",
+    padding: 8,
   },
   itemText: {
     flex: 5,
@@ -50,13 +66,12 @@ const styles = StyleSheet.create({
   },
   itemRemoveButton: {
     flex: 1,
-    backgroundColor: "red",
     borderRadius: 10,
     textAlign: "center",
     justifyContent: "center",
     alignItems: "center",
     fontSize: 30,
-    fontWeight: "bold",
+    height: 35,
   },
   removeButton: {
     fontSize: 24,

@@ -1,37 +1,93 @@
+import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { View, TextInput, StyleSheet, Text, Pressable } from "react-native";
+import {
+  View,
+  TextInput,
+  StyleSheet,
+  Text,
+  Pressable,
+  SafeAreaView,
+  ScrollView,
+  Keyboard,
+} from "react-native";
+import SelectDropdown from "react-native-select-dropdown";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 export const InputComponent = ({ itemList, setItemList }) => {
   const [inputItemText, setInputItemText] = useState("");
   const [inputItemAmount, setInputItemAmount] = useState("");
+  const [selectedItem, setSelectedItem] = useState({});
 
-  const data = require("../assets/data/data.json");
+  const data = require("../assets/data/data.json").availableItems;
 
   const addItem = () => {
-    if (inputItemAmount && inputItemText) {
+    if (inputItemAmount && selectedItem) {
       setItemList([
         ...itemList,
         {
-          text: inputItemText,
+          text: selectedItem.label,
           amount: inputItemAmount,
           id: Math.random().toString(),
+          location: selectedItem.location,
+          checked: false,
         },
       ]);
+      setSelectedItem({});
       setInputItemText("");
       setInputItemAmount("");
+      Keyboard.dismiss();
     }
   };
 
   return (
     <View style={styles.inputContainer}>
       <View style={styles.inputSection}>
-        <TextInput
-          placeholder="Article"
-          style={styles.textInput}
-          value={inputItemText}
-          onChangeText={(text) => setInputItemText(text)}
-          maxLength={15}
-        ></TextInput>
+        <View style={styles.viewContainer}>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            alwaysBounceVertical={false}
+            contentContainerStyle={styles.scrollViewContainer}
+          >
+            <SelectDropdown
+              data={data}
+              onSelect={(item, index) => {
+                setSelectedItem(item);
+                console.log(selectedItem);
+              }}
+              defaultButtonText={"Select article"}
+              buttonTextAfterSelection={(item, index) => {
+                let text = selectedItem.label || "Select article";
+                return text;
+              }}
+              rowTextForSelection={(item, index) => {
+                return item.label;
+              }}
+              buttonStyle={styles.dropdown1BtnStyle}
+              buttonTextStyle={styles.dropdown1BtnTxtStyle}
+              renderDropdownIcon={(isOpened) => {
+                return (
+                  <FontAwesome
+                    name={isOpened ? "chevron-up" : "chevron-down"}
+                    color={"#444"}
+                    size={18}
+                  />
+                );
+              }}
+              dropdownIconPosition={"right"}
+              dropdownStyle={styles.dropdown1DropdownStyle}
+              rowStyle={styles.dropdown1RowStyle}
+              rowTextStyle={styles.dropdown1RowTxtStyle}
+              selectedRowStyle={styles.dropdown1SelectedRowStyle}
+              search
+              searchInputStyle={styles.dropdown1searchInputStyleStyle}
+              searchPlaceHolder={"Search here"}
+              searchPlaceHolderColor={"darkgrey"}
+              renderSearchInputLeftIcon={() => {
+                return <FontAwesome name={"search"} color={"#444"} size={18} />;
+              }}
+            />
+          </ScrollView>
+        </View>
         <TextInput
           keyboardType="number-pad"
           placeholder="Amount"
@@ -69,11 +125,17 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   textInput: {
-    borderColor: "#dddddd",
-    borderWidth: 1,
     width: "100%",
-    padding: 8,
-    margin: 2,
+    height: 50,
+    backgroundColor: "#FFF",
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: "#444",
+    color: "#444",
+    textAlign: "left",
+    padding: 16,
+    fontSize: 16,
+    fontWeight: "500",
   },
   button: {
     backgroundColor: "#40beeb",
@@ -87,5 +149,27 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
+  },
+  dropdown1BtnStyle: {
+    width: "100%",
+    height: 50,
+    backgroundColor: "#FFF",
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: "#444",
+  },
+  dropdown1BtnTxtStyle: { color: "#444", textAlign: "left" },
+  dropdown1DropdownStyle: { backgroundColor: "#EFEFEF" },
+  dropdown1RowStyle: {
+    backgroundColor: "#EFEFEF",
+    borderBottomColor: "#C5C5C5",
+  },
+  dropdown1RowTxtStyle: { color: "#444", textAlign: "left" },
+  dropdown1SelectedRowStyle: { backgroundColor: "rgba(0,0,0,0.1)" },
+  dropdown1searchInputStyleStyle: {
+    backgroundColor: "#EFEFEF",
+    borderRadius: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: "#444",
   },
 });

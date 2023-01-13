@@ -1,32 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, StyleSheet, FlatList, Button, View } from "react-native";
 import { ListItem } from "./ListItem";
+import { StoreBlueprint } from "./StoreBlueprint";
 
 export const ListComponent = ({ itemList, setItemList }) => {
+  const [isStoreBlueprintVisible, setIsStoreBlueprintVisible] = useState(false);
+
+  const toggleBlueprint = () => {
+    setIsStoreBlueprintVisible(true);
+  };
+
   return (
-    <View style={styles.listContainer}>
-      <View style={styles.titleItem}>
-        <Text style={styles.titleText}>Article</Text>
-        <Text style={styles.titleAmount}>Amount</Text>
+    <>
+      <View style={styles.listContainer}>
+        <View style={styles.titleItem}>
+          <Text style={styles.titleText}>Article</Text>
+          <Text style={styles.titleAmount}>Amount</Text>
+        </View>
+        <FlatList
+          data={itemList}
+          style={styles.itemList}
+          renderItem={(itemData) => {
+            return (
+              <ListItem
+                text={itemData.item.text}
+                amount={itemData.item.amount}
+                id={itemData.item.id}
+                checked={itemData.item.checked}
+                itemList={itemList}
+                setItemList={setItemList}
+              />
+            );
+          }}
+        />
+        <View style={styles.button}>
+          <Button title="Check Store" onPress={toggleBlueprint} />
+        </View>
       </View>
-      <FlatList
-        data={itemList}
-        renderItem={(itemData) => {
-          return (
-            <ListItem
-              text={itemData.item.text}
-              amount={itemData.item.amount}
-              id={itemData.item.id}
-              itemList={itemList}
-              setItemList={setItemList}
-            />
-          );
-        }}
+      <StoreBlueprint
+        isStoreBlueprintVisible={isStoreBlueprintVisible}
+        setIsStoreBlueprintVisible={setIsStoreBlueprintVisible}
       />
-      <View style={styles.button}>
-        <Button title="Check Store" />
-      </View>
-    </View>
+    </>
   );
 };
 
@@ -58,5 +73,9 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: "rgba(255, 255, 255, 0.8)",
     textAlign: "center",
+  },
+  itemList: {
+    backgroundColor: "rgba(255, 255, 255, 0.4)",
+    marginBottom: 8,
   },
 });

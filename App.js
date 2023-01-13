@@ -6,9 +6,7 @@ import { useState } from "react";
 import { ListComponent } from "./components/ListComponent";
 
 export default function App() {
-  const [itemList, setItemList] = useState([
-    { text: "hello", amount: 3, id: Math.random().toString() },
-  ]);
+  const [itemList, setItemList] = useState([]);
 
   const [loaded] = useFonts({
     Appie: require("./assets/fonts/hamburg-ah-regular.ttf"),
